@@ -38,8 +38,9 @@ fi
 
 # temp file
 
-t=/tmp/vipe.$$.txt
-touch $t
+# t=/tmp/vipe.$$.txt
+# touch $t
+t=$(mktemp /tmp/vipe.$$.txt)
 
 # read from stdin
 
