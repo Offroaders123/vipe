@@ -16,9 +16,13 @@ process.stdin.isTTY()
   ? start('')
   : process.stdin.pipe(concat(start));
 
+/**
+ * @param {string | NodeJS.ArrayBufferView} stdin
+ * @returns {void}
+ */
 function start(stdin){
   fs.writeFileSync(tmp, stdin);
-  var ed = process.env.EDITOR || 'vi';
+  var ed = process.env['EDITOR'] || 'vi';
   run(ed, [tmp], { stdio: 'pipe' })
   .on('exit', function(){
     process.stdout.write(fs.readFileSync(tmp));
